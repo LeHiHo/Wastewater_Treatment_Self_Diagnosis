@@ -1,0 +1,77 @@
+{% load mathfilters %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        {% if data.get.name == '' %}
+        <h1><center>제출이름을 입력하지 않았거나 제출한 이름은 데이터베이스에 없습니다.</center></h1>
+        {% else %}
+            {% if data.get.BODdecision == True and data.get.TSSdecision == True and data.get.TNdecision == True and data.get.TPdecision == True %}
+                
+                <img src="{% static 'Figure_BOD,TSS,TN,TP.png' %}" width="140%">
+                <h2><center>BOD,TSS,TN,TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.BODdecision == True and data.get.TSSdecision == True and data.get.TNdecision == True %}
+                <img src="{% static 'Figure_BOD,TSS,TN.png' %}" width="140%">
+                <h2><center>BOD,TSS,TN 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.BODdecision == True and data.get.TSSdecision == True and data.get.TPdecision == True %}
+                <img src="{% static 'Figure_BOD,TSS,TP.png' %}" width="140%">
+                <h2><center>BOD,TSS,TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.BODdecision == True and data.get.TNdecision == True and data.get.TPdecision == True %}
+                <img src="{% static 'Figure_BOD,TN,TP.png' %}" width="140%">
+                <h2><center>BOD,TN,TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.TSSdecision == True and data.get.TNdecision == True and data.get.TPdecision == True %}
+                <img src="{% static 'Figure_TSS,TN,TP.png' %}" width="140%">
+                <h2><center>TSS,TN,TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.BODdecision == True and data.get.TNdecision == True %}
+                <img src="{% static 'Figure_BOD,TN.png' %}" width="140%">
+                <h2><center>BOD,TN 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.BODdecision == True and data.get.TPdecision == True %}
+                <img src="{% static 'Figure_BOD,TP.png' %}" width="140%">
+                <h2><center>BOD,TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.BODdecision == True and data.get.TSSdecision == True %}
+                <img src="{% static 'Figure_BOD,TSS.png' %}" width="140%">
+                <h2><center>BOD,TSS 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.TNdecision == True and data.get.TPdecision == True %}
+                <img src="{% static 'Figure_TN,TP.png' %}" width="140%">
+                <h2><center>TN,TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.TSSdecision == True and data.get.TNdecision == True %}
+                <img src="{% static 'Figure_TSS,TN.png' %}" width="140%">
+                <h2><center>TSS,TN 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.TSSdecision == True and data.get.TPdecision == True %}
+                <img src="{% static 'Figure_TSS,TP.png' %}" width="140%">
+                <h2><center>TSS,TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.BODdecision == True %}
+                <img src="{% static 'Figure_BOD.png' %}" width="140%">
+                <h2><center>BOD 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.TSSdecision == True %}
+                <img src="{% static 'Figure_TSS.png' %}" width="140%">
+                <h2><center>TSS 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.TNdecision == True %}
+                <img src="{% static 'Figure_TN.png' %}" width="140%">
+                <h2><center>TN 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% elif data.get.TPdecision == True %}
+                <img src="{% static 'Figure_TP.png' %}" width="140%">
+                <h2><center>TP 제거율이 목표 제거율보다 낮습니다. 조치사항을 확인하세요.</center></h2>
+            {% else %}
+                <img src="{% static 'Figure_clear.png' %}" width="140%">   
+                <h2><center>처리시설이 정상적으로 운영중입니다!</center></h2>     
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+
+
+</body>
+</html>
+
+
